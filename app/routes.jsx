@@ -31,9 +31,9 @@ export default (store) => {
   };
   return (
     <Route path="/" component={App}>
-      <IndexRoute component={Vote} fetchData={fetchVoteData} />
-      <Route path="login" component={LoginOrRegister} onEnter={redirectAuth} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+      <IndexRoute component={About}  />
+      {/*<Route path="login" component={LoginOrRegister}  />*/}
+      <Route path="dashboard" component={Dashboard} />
       <Route path="about" component={About} />
     </Route>
   );

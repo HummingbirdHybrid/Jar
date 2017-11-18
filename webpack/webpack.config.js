@@ -47,7 +47,7 @@ module.exports = (env = {}) => {
   };
 
   const devBrowserRender = {
-    devtool: 'eval',
+    devtool: 'sourcemap',
     context: PATHS.app,
     entry: { app: ['./client', hotMiddlewareScript] },
     node,

@@ -5,26 +5,17 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import { logOut } from '../actions/users';
 import styles from '../css/components/navigation';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Tabs, Tab } from 'material-ui';
 
 const cx = classNames.bind(styles);
 
 const Navigation = ({ user, logOut }) => {
     return (
-      <nav className={cx('navigation')} role="navigation">
-        <Link
-          to="/"
-          className={cx('item', 'logo')}
-          activeClassName={cx('active')}>Ninja Ocean</Link>
-          { user.authenticated ? (
-            <Link
-              onClick={logOut}
-              className={cx('item')} to="/">Logout</Link>
-          ) : (
-            <Link className={cx('item')} to="/login">Log in</Link>
-          )}
-        <Link className={cx('item')} to="/dashboard">Dashboard</Link>
-        <Link to="/about" className={cx('item')} activeClassName={cx('active')}>About</Link>
-      </nav>
+        <Tabs>
+            <Tab value={0} label="about" component={Link} to={'/about'} />
+            <Tab value={1} label="second" component={Link}  to={'/dashboard'}/>
+        </Tabs>
     );
 };
 
