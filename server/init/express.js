@@ -54,27 +54,6 @@ export default (app) => {
   //          cookie: Please note that secure: true is a recommended option.
   //                  However, it requires an https-enabled website, i.e., HTTPS is necessary for secure cookies.
   //                  If secure is set, and you access your site over HTTP, the cookie will not be set.
-  let sessionStore = null;
-  if (!dbSession) {
-    console.warn(unsupportedMessage('session'));
-  } else {
-    sessionStore = dbSession();
-  }
-
-  const sess = {
-    resave: false,
-    saveUninitialized: false,
-    secret: sessionSecret,
-    proxy: true, // The "X-Forwarded-Proto" header will be used.
-    name: 'sessionId',
-    // Add HTTPOnly, Secure attributes on Session Cookie
-    // If secure is set, and you access your site over HTTP, the cookie will not be set
-    cookie: {
-      httpOnly: true,
-      secure: false,
-    },
-    store: sessionStore
-  };
 
   console.log('--------------------------');
   console.log('===> 😊  Starting Server . . .');
@@ -84,12 +63,11 @@ export default (app) => {
   if (ENV === 'production') {
     console.log('===> 🚦  Note: In order for authentication to work in production');
     console.log('===>           you will need a secure HTTPS connection');
-    sess.cookie.secure = true; // Serve secure cookies
+    // sess.cookie.secure = true; // Serve secure cookies
   }
   console.log('--------------------------');
 
 
-  app.use(session(sess));
 
   app.use(passport.initialize());
   app.use(passport.session());
