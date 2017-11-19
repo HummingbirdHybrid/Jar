@@ -9,17 +9,7 @@ import renderMiddleware from './render/middleware';
 
 const app = express();
 
-/*
- * Database-specific setup
- * - connect to MongoDB using mongoose
- * - register mongoose Schema
- */
-connect();
-
-/*
- * REMOVE if you do not need passport configuration
- */
-initPassport();
+// initPassport();
 
 if (isDebug) {
   // enable webpack hot module replacement
